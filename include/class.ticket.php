@@ -1812,7 +1812,9 @@ class Ticket {
             $alerts = isset($vars['flags'])
                 ? !$vars['flags']['bounce'] && !$vars['flags']['auto-reply']
                 : true;
-        if ($alerts && $message->isBounceOrAutoReply())
+        // BUGFIX[nunes] Skip isAutoReply() check, 
+        // it leads to collaborators not being notified
+        if ($alerts && $message->isBounce())
             $alerts = false;
 
         $this->onMessage($message, $alerts); //must be called b4 sending alerts to staff.

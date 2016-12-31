@@ -356,6 +356,8 @@ class Email {
                            'auth' => (bool) $vars['smtp_auth'],
                            'username' =>$vars['userid'],
                            'password' =>$passwd,
+                           // BUGFIX[nunes] Set localhost to avoid spam flagging
+                           'localhost' => gethostbyaddr(gethostbyname(gethostname())),
                            'timeout'  =>20,
                            'debug' => false,
                            ));

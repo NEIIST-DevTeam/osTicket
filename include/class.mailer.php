@@ -534,6 +534,8 @@ class Mailer {
                     'auth' => $smtp['auth'],
                     'username' => $smtp['username'],
                     'password' => $smtp['password'],
+                    // BUGFIX[nunes] Set localhost to avoid spam flagging
+                    'localhost' => gethostbyaddr(gethostbyname(gethostname())),
                     'timeout'  => 20,
                     'debug' => false,
                     'persist' => true,

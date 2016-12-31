@@ -2335,7 +2335,9 @@ implements RestrictedAccess, Threadable {
                 ? !$vars['mailflags']['bounce'] && !$vars['mailflags']['auto-reply']
                 : true;
         $reopen = $autorespond; // Do not reopen bounces
-        if ($autorespond && $message->isBounceOrAutoReply())
+        // BUGFIX[nunes] Skip isAutoReply() check, 
+        // it leads to collaborators not being notified
+        if ($autorespond && $message->isBounce())
             $autorespond = $reopen= false;
         elseif ($autorespond && isset($vars['autorespond']))
             $autorespond = $vars['autorespond'];

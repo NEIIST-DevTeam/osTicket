@@ -13,7 +13,7 @@ Patches are marked in the source code with `BUGFIX` comments.
 
 The SMTP implementation of the PEAR Mail interface can receive the following parameter:
 
-```
+```php
     /**
      * Hostname or domain that will be sent to the remote SMTP server in the
      * HELO / EHLO message.
@@ -27,7 +27,7 @@ However, osTicket's wrappers never pass this parameter to the factory. Thus, spa
 
 As long as the fqdn of the server is defined in /etc/hosts, passing the following parameter to the factory seems to work:
 
-```
+```diff
 --- a/include/class.email.php	2016-12-31 02:41:37.584410795 +0000
 +++ b/include/class.email.php	2016-12-31 02:15:47.335257531 +0000
 @@ -361,6 +361,8 @@
@@ -58,7 +58,7 @@ We noticed that we were receiving only `New Ticket` alerts, missing `New Message
 
 Apparently there is a bug in auto reply checks, made in `isBounceOrAutoReply()`, which always returned true. We simply skip checks for auto replies.
 
-```
+```diff
 --- a/include/class.ticket.php	2016-12-31 02:41:37.597410612 +0000
 +++ b/include/class.ticket.php	2016-12-31 02:31:49.042704762 +0000
 @@ -2335,7 +2335,9 @@

@@ -13,7 +13,7 @@ Patches are marked in the source code with `BUGFIX` comments.
 
 The SMTP implementation of the PEAR Mail interface can receive the following parameter:
 
-```
+```php
     /**
      * Hostname or domain that will be sent to the remote SMTP server in the
      * HELO / EHLO message.
